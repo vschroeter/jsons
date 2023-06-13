@@ -1,4 +1,5 @@
 from typing import Union
+from types import UnionType
 
 from jsons._common_impl import get_class_name, NoneType
 from jsons._compatibility_impl import get_union_params
@@ -6,7 +7,7 @@ from jsons._dump_impl import dump
 from jsons.exceptions import JsonsError, SerializationError
 
 
-def default_union_serializer(obj: object, cls: Union, **kwargs) -> object:
+def default_union_serializer(obj: object, cls: Union[Union[any, any], UnionType], **kwargs) -> object:
     """
     Serialize an object to any matching type of the given union. The first
     successful serialization is returned.

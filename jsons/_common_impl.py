@@ -5,6 +5,7 @@ This module contains implementations of common functionality that can be used
 throughout `jsons`.
 """
 import builtins
+import types
 import warnings
 from importlib import import_module
 from typing import Callable, Optional, Tuple, TypeVar, Any
@@ -152,6 +153,11 @@ def _lookup_announced_class(
 def _get_simple_name(cls: type) -> str:
     if cls is None:
         cls = type(cls)
+
+    # Retreive the actual type of Python3.11+ built in UnionTypes
+    if isinstance(cls, types.UnionType):
+        cls = type(cls)
+
     cls_name = getattr(cls, '__name__', None)
     if not cls_name:
         cls_name = getattr(cls, '_name', None)

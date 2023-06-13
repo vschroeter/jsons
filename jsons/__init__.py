@@ -91,6 +91,7 @@ from decimal import Decimal
 from enum import Enum, IntEnum
 from pathlib import PurePath
 from typing import Union, List, Tuple, Iterable, Optional, DefaultDict, Dict
+from types import UnionType
 from uuid import UUID
 
 from jsons._common_impl import NoneType
@@ -289,12 +290,12 @@ set_serializer(default_iterable_serializer, Iterable, False)
 set_serializer(default_object_serializer, object, False)
 set_serializer(default_uuid_serializer, UUID)
 set_serializer(default_decimal_serializer, Decimal)
-set_serializer(default_union_serializer, (Union, Optional))
+set_serializer(default_union_serializer, (Union, Optional, UnionType))
 set_serializer(default_path_serializer, PurePath)
 
 set_deserializer(default_list_deserializer, (list, List))
 set_deserializer(default_tuple_deserializer, (tuple, Tuple))
-set_deserializer(default_union_deserializer, (Union, Optional))
+set_deserializer(default_union_deserializer, (Union, Optional, UnionType))
 set_deserializer(default_defaultdict_deserializer, DefaultDict)
 set_deserializer(default_datetime_deserializer, datetime)
 set_deserializer(default_date_deserializer, date)
